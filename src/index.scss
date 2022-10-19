@@ -1,0 +1,23 @@
+@import "bulma/sass/utilities/initial-variables";
+$black: $black-bis;
+@import "bulma/sass/utilities/functions";
+@import "bulma/sass/form/all";
+$input-focus-border-color: $primary;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: hsl(0, 0%, 7%);
+  //height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+@import "bulma";

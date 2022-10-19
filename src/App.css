@@ -1,0 +1,65 @@
+.lr-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    padding: 0 40vw
+}
+
+.splide__arrow--prev {
+    position: absolute !important;
+    left: -48px !important;
+    /*top: -30px !important;*/
+}
+
+.splide__arrow--prev:disabled, .splide__arrow--next:disabled {
+    display: none;
+}
+
+.splide__arrow svg {
+    fill: hsl(171, 100%, 41%) !important;
+}
+
+.splide__arrow--next {
+    position: absolute !important;
+    right: -48px !important;
+    /*top: -30px !important;*/
+}
+
+.details-container {
+    display: flex;
+}
+
+.details-container .right {
+    width: 100%;
+}
+
+.movie-name {
+    white-space: nowrap;
+    overflow: hidden;
+    height: 1rem;
+    text-overflow: ellipsis;
+    margin-bottom: 0 !important;
+}
+
+.movie-price {
+    /*width: 100%;*/
+    /*text-align: right !important;*/
+}
+
+.navbar-end input::placeholder {
+    color: white;
+}
+
+.movies-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 3rem;
+    row-gap: 2rem;
+}
+
+.movies-container .movie-card {
+    width: 10rem;
+    height: auto;
+}
