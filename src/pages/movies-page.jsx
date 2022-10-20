@@ -2,14 +2,8 @@ import {useEffect, useState} from "react";
 import MovieCard from "../components/movie-card";
 
 const MoviesPage = ({title, source}) => {
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState(source)
 
-    useEffect(() => {
-        source().then(res => {
-            console.log(res)
-            setMovies(res.data)
-        })
-    }, [])
     return (
         <div className="container pb-6">
             <p className="title is-4 has-text-light">{title}</p>

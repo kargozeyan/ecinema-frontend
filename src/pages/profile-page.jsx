@@ -2,7 +2,6 @@ import {Context} from "../index";
 import {useContext, useState} from "react";
 import {observer} from "mobx-react-lite";
 import Input from "../components/input";
-import {editUser} from "../api/user-service";
 
 const ProfilePage = () => {
     const {store} = useContext(Context)
@@ -13,7 +12,7 @@ const ProfilePage = () => {
     const [oldPassword, setOldPassword] = useState("");
     const user = store.user
 
-    return (<div className="container">
+    return (<div className="container" style={{height: "100vh"}}>
         <p className="title is-4 has-text-light">My Profile</p>
         <div style={{height: "1px"}} className="has-background-light mb-6"></div>
         <Input label="First Name" defValue={user.firstName} onChange={setFirstName}/>
@@ -22,7 +21,6 @@ const ProfilePage = () => {
         <Input label="New Password" onChange={setNewPassword} type="password"/>
         <Input label="Old Password" onChange={setOldPassword} type="password"/>
         <button className="button is-primary has-text-weight-bold is-center" onClick={() => {
-            editUser()
         }}>Save Changes
         </button>
     </div>)

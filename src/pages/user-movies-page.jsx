@@ -1,8 +1,12 @@
 import MoviesPage from "./movies-page";
 import {getMyMovies} from "../api/user-service";
+import {useContext} from "react";
+import {Context} from "../index";
 
 const UserMoviesPage = () => {
-    return (<MoviesPage title={"My Movies"} source={getMyMovies}/>);
+    const {store} = useContext(Context)
+    console.log(store.movies)
+    return (<MoviesPage title={"My Movies"} source={store.movies}/>);
 }
 
 export default UserMoviesPage

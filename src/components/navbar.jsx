@@ -1,7 +1,6 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import Input from "./input";
 import SearchIcon from '@mui/icons-material/Search';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
@@ -18,9 +17,6 @@ const DropDown = (logoutHandler) => (
         <AccountCircleIcon className="m-auto" style={{width: "24px", height: "24px"}}/>
 
         <div className="navbar-dropdown is-right">
-            <Link className="navbar-item" to="/my/profile">
-                Profile
-            </Link>
             <Link className="navbar-item" to="/my/movies">
                 My movies
             </Link>
@@ -34,10 +30,34 @@ const DropDown = (logoutHandler) => (
         </div>
     </div>
 )
-const Navbar = () => {
+const Navbar = ({hideSearch, searchClick}) => {
     const {store} = useContext(Context)
     const navigate = useNavigate()
-    console.log({isauth: store.isAuth, user: store.user});
+    const [searchTerm, setSearchTerm] = useState("");
+
+    if (!searchClick) {
+        searchClick = (search) => {
+        }
+    }
+
+    function getSearch() {
+        if (hideSearch) {
+            return null;
+        }
+
+        return (<div className="my-auto mr-3 has">
+            <p className="control has-icons-right has-text-light">
+                <input style={{background: "transparent", color: "white"}}
+                       className="input is-light" type="text" placeholder="Search..." defaultValue={searchTerm}
+                       onChange={e => setSearchTerm(e.target.value)}/>
+                <span className="is-clickable icon is-small is-right is-clickable"
+                      onClick={() => searchClick(searchTerm)}>
+                                <SearchIcon sx={{color: "white"}}/>
+                            </span>
+            </p>
+        </div>)
+    }
+
     return (
         <nav className="container navbar is-black mb-6" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
@@ -59,16 +79,8 @@ const Navbar = () => {
                     {/*</a>*/}
 
                 </div>
+                {getSearch()}
                 <div className="navbar-end">
-                    <div className="my-auto mr-3">
-                        <p className="control has-icons-right has-text-light">
-                            <input style={{background: "transparent", color: "white"}}
-                                   className="input is-light" type="text" placeholder="Search..."/>
-                            <span className="is-clickable icon is-small is-right">
-                                <SearchIcon sx={{color: "white"}}/>
-                            </span>
-                        </p>
-                    </div>
                     {store.isAuth ? DropDown(async () => {
                         await store.logout()
                         navigate('/')

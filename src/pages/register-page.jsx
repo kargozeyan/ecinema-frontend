@@ -2,7 +2,6 @@ import {Link, useNavigate} from "react-router-dom";
 import Input from "../components/input";
 import {useContext, useState} from "react";
 import {Context} from "../index";
-import {register} from "../api/auth-service";
 import Joi from "joi";
 import toast from "react-hot-toast";
 

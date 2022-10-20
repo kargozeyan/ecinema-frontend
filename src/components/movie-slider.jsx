@@ -1,10 +1,8 @@
-import {Swiper, SwiperSlide, useSwiper} from "swiper/react";
+import {useSwiper} from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import {Navigation, Pagination} from "swiper";
 import {Splide, SplideSlide} from "@splidejs/react-splide";
-import {Link} from "react-router-dom";
 import MovieCard from "./movie-card";
 
 const SwiperButton = ({children, next}) => {

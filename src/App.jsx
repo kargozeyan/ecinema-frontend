@@ -27,37 +27,35 @@ function App() {
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
                     <Route path="/search" element={<React.Fragment>
-                        <Navbar/>
                         <SearchPage/>
                     </React.Fragment>}/>
                     <Route path="/movie/:movieId" element={
                         <React.Fragment>
-                            <Navbar/>
+                            <Navbar hideSearch/>
                             <DetailsPage/>
                         </React.Fragment>
                     }/>
                     <Route path="/my/profile" element={
                         <React.Fragment>
-                            <Navbar/>
+                            <Navbar hideSearch/>
                             <ProfilePage/>
                         </React.Fragment>
                     }/>
                     <Route path="/my/movies" element={
                         <React.Fragment>
-                            <Navbar/>
+                            <Navbar hideSearch/>
                             <UserMoviesPage/>
                         </React.Fragment>
                     }/>
                     <Route path="/my/favorites" element={
                         <React.Fragment>
-                            <Navbar/>
+                            <Navbar hideSearch/>
                             <FavoritesPage/>
                         </React.Fragment>
                     }/>
                 </Routes>
             </Router>
-            <Toaster toastOptions={{
-            }}/>
+            <Toaster toastOptions={{duration: 3000}}/>
         </div>
 
     );

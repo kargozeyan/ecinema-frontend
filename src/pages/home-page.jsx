@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import PopularSlider from "../components/popular-slider";
 import MovieSlider from "../components/movie-slider";
-import $api from "../api/api";
-import {getNewestMovies, getMoviesByGenres} from '../api/movie-service'
+import {getMoviesByGenres, getNewestMovies} from '../api/movie-service'
 
 const GenreSlider = (genre, movies) => {
     return (
