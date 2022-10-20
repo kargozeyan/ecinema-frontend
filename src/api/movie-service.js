@@ -19,7 +19,7 @@ export async function getMoviesByGenres() {
         {
             params: {
                 page: 0,
-                size: 17
+                size: 18
             }
         })
 }

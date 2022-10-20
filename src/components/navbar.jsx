@@ -64,7 +64,8 @@ const Navbar = ({hideSearch, searchClick, onFocus}) => {
         <nav className="container navbar is-black mb-6" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <Link className="navbar-item" to="/">
-                    <img src="https://bulma.io/images/bulma-logo-white.png" width="112" height="28"/>
+                    {/*<img src="https://bulma.io/images/bulma-logo-white.png" width="112" height="28"/>*/}
+                    <p className="title is-4 has-text-white has-text-weight-bold">ECinema</p>
                 </Link>
             </div>
             <div className="navbar-menu">
