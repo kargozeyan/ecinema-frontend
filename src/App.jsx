@@ -16,11 +16,10 @@ import {Toaster} from "react-hot-toast";
 function App() {
     return (
         <div>
-            <Router>
+            <Router >
                 <Routes>
                     <Route path="/" element={
                         <React.Fragment>
-                            <Navbar/>
                             <HomePage/>
                         </React.Fragment>}
                     />

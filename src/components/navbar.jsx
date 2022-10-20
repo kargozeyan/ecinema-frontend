@@ -4,6 +4,8 @@ import {Link, useNavigate} from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
+import toast from "react-hot-toast";
+import {refillBalance} from "../api/user-service";
 
 const LoginRegister = () => (
     <React.Fragment>
@@ -30,7 +32,7 @@ const DropDown = (logoutHandler) => (
         </div>
     </div>
 )
-const Navbar = ({hideSearch, searchClick}) => {
+const Navbar = ({hideSearch, searchClick, onFocus}) => {
     const {store} = useContext(Context)
     const navigate = useNavigate()
     const [searchTerm, setSearchTerm] = useState("");
@@ -47,7 +49,7 @@ const Navbar = ({hideSearch, searchClick}) => {
 
         return (<div className="my-auto mr-3 has">
             <p className="control has-icons-right has-text-light">
-                <input style={{background: "transparent", color: "white"}}
+                <input style={{background: "transparent", color: "white"}} onFocus={onFocus}
                        className="input is-light" type="text" placeholder="Search..." defaultValue={searchTerm}
                        onChange={e => setSearchTerm(e.target.value)}/>
                 <span className="is-clickable icon is-small is-right is-clickable"
@@ -81,10 +83,29 @@ const Navbar = ({hideSearch, searchClick}) => {
                 </div>
                 {getSearch()}
                 <div className="navbar-end">
-                    {store.isAuth ? DropDown(async () => {
-                        await store.logout()
-                        navigate('/')
-                    }) : LoginRegister()}
+                    {store.isAuth
+                        ? <React.Fragment>
+                            <p className="my-auto has-text-weight-bold has-text-info mr-2 is-clickable" onClick={() => {
+                                toast(<div className="is-inline-block">
+                                        {[1, 3, 5, 10].map(p =>
+                                            <button key={p} className="button is-primary mx-2" onClick={() => {
+                                                refillBalance(p)
+                                                store.user.balance += p
+                                            }}>{p}$</button>)}
+                                    </div>,
+                                    {
+                                        duration: 3000
+                                    }
+                                )
+                            }
+                            }>{store.user.balance}$</p>
+                            {DropDown(async () => {
+                                await store.logout()
+                                navigate('/')
+                            })
+                            }
+                        </React.Fragment>
+                        : LoginRegister()}
                 </div>
             </div>
         </nav>

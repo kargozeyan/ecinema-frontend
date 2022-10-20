@@ -2,10 +2,13 @@ import React, {useEffect, useState} from "react";
 import PopularSlider from "../components/popular-slider";
 import MovieSlider from "../components/movie-slider";
 import {getMoviesByGenres, getNewestMovies} from '../api/movie-service'
+import Navbar from "../components/navbar";
+import {useNavigate} from "react-router-dom";
 
 const GenreSlider = (genre, movies) => {
     return (
         <React.Fragment key={genre}>
+
             <h1 className="title is-3 has-text-white mt-6">{genre} ›</h1>
             <MovieSlider movies={movies}/>
         </React.Fragment>
@@ -13,6 +16,7 @@ const GenreSlider = (genre, movies) => {
 }
 
 function HomePage() {
+    const navigate = useNavigate()
     const [newest, setNewest] = useState([])
     const [moviesByGenres, setMoviesByGenres] = useState([])
 
@@ -32,6 +36,7 @@ function HomePage() {
     }, [])
     return (
         <React.Fragment>
+            <Navbar onFocus={() => {navigate("/search")}}/>
             <PopularSlider movies={newest}></PopularSlider>
             <div className={"has-background-black pb-6"}>
                 <div className="container">
